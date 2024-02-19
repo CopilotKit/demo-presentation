@@ -9,11 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@copilotkit/backend": "0.4.0-mme-pre-16-02-2024.4",
-    "@copilotkit/react-core": "0.20.0-mme-pre-16-02-2024.3",
-    "@copilotkit/react-textarea": "0.30.0-mme-pre-16-02-2024.3",
-    "@copilotkit/react-ui": "0.17.0-mme-pre-16-02-2024.3",
-    "@copilotkit/shared": "0.4.0-mme-pre-16-02-2024.3",
+    "@copilotkit/backend": "0.4.0",
+    "@copilotkit/react-core": "0.20.0",
+    "@copilotkit/react-textarea": "0.30.0",
+    "@copilotkit/react-ui": "0.17.0",
+    "@copilotkit/shared": "0.4.0",
     "@heroicons/react": "^2.1.1",
     "@langchain/community": "^0.0.29",
     "@langchain/core": "^0.1.29",
