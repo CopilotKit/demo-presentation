@@ -1,0 +1,39 @@
+{
+  "name": "copilotkit-demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@copilotkit/backend": "0.4.0-mme-pre-16-02-2024.4",
+    "@copilotkit/react-core": "0.20.0-mme-pre-16-02-2024.3",
+    "@copilotkit/react-textarea": "0.30.0-mme-pre-16-02-2024.3",
+    "@copilotkit/react-ui": "0.17.0-mme-pre-16-02-2024.3",
+    "@copilotkit/shared": "0.4.0-mme-pre-16-02-2024.3",
+    "@heroicons/react": "^2.1.1",
+    "@langchain/community": "^0.0.29",
+    "@langchain/core": "^0.1.29",
+    "@langchain/langgraph": "^0.0.7",
+    "@langchain/openai": "^0.0.14",
+    "langchain": "^0.1.19",
+    "next": "14.1.0",
+    "openai": "^4.28.0",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
