@@ -68,77 +68,66 @@ export const Slide = (props: SlideProps) => {
 
   return (
     <>
-    <div
-      className="w-full relative"
-      style={{
-          height: `calc(100vh - ${heightOfSpeakerNotes}px)`,
-      }}
-    >
-      <div
-        className="background-image w-full -z-10 absolute"
+      <div 
+        className="w-full relative bg-slate-200"
         style={{
-          pointerEvents: "none",
-          backgroundImage,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           height: `calc(100vh - ${heightOfSpeakerNotes}px)`,
-        }}
-      />
-
-      <div
-        className="h-full w-full flex flex-col justify-center items-center text-5xl text-white p-10 text-center z-10"
-        style={{
-          textShadow: "1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000",
         }}
       >
-        <textarea
-          className="mt-16 text-7xl bg-white text-gray-400 p-4 text-center font-bold uppercase italic line-clamp-2 flex items-center"
-          style={{
-            border: "none",
-            outline: "none",
-          }}
-          value={props.slide.title}
-          placeholder="Title"
-          onChange={(e) => {
-            props.partialUpdateSlide({ title: e.target.value });
-          }}
-        />
+        <div className="h-1/3 flex items-center justify-center text-5xl text-white p-10 text-center z-10">
+          <textarea
+            className="mt-16 text-7xl bg-white text-gray-400 p-4 text-center font-bold uppercase italic line-clamp-2 flex items-center"
+            style={{
+              border: "none",
+              outline: "none",
+            }}
+            value={props.slide.title}
+            placeholder="Title"
+            onChange={(e) => {
+              props.partialUpdateSlide({ title: e.target.value });
+            }}
+          />
+        </div>
 
-        <textarea
-          className="w-full h-full bg-transparent text-5xl text-black p-10 resize-none"
-          style={{
-            background: "none",
-            border: "none",
-            outline: "none",
-            fontFamily: "inherit",
-            fontSize: "inherit",
-            lineHeight: "inherit",
-          }}
-          value={props.slide.content}
-          placeholder="Body"
-          onChange={(e) => {
-            props.partialUpdateSlide({ content: e.target.value });
-          }}
-        />
+        <div className="h-2/3 flex">
+          <textarea
+            className="w-1/2 text-2xl text-black p-10 resize-none bg-transparent m-12 rounded-xl"
+            style={{
+            }}
+            value={props.slide.content}
+            placeholder="Body"
+            onChange={(e) => {
+              props.partialUpdateSlide({ content: e.target.value });
+            }}
+          />
+
+          <div
+            className="w-1/2 z-10 rounded-xl m-12 mr-24"
+            style={{
+              backgroundImage,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        </div>
       </div>
-    </div>
 
       <textarea
-          className="w-full h-full bg-transparent text-5xl p-10 resize-none bg-gray-500 pr-36"
-          style={{
-            height: `${heightOfSpeakerNotes}px`,
-            background: "none",
-            border: "none",
-            outline: "none",
-            fontFamily: "inherit",
-            fontSize: "inherit",
-            lineHeight: "inherit",
-          }}
-          value={props.slide.spokenNarration}
-          onChange={(e) => {
-            props.partialUpdateSlide({ spokenNarration: e.target.value });
-          }}
-        />
+        className=" w-9/12 h-full bg-transparent text-5xl p-10 resize-none bg-gray-500 pr-36"
+        style={{
+          height: `${heightOfSpeakerNotes}px`,
+          background: "none",
+          border: "none",
+          outline: "none",
+          fontFamily: "inherit",
+          fontSize: "inherit",
+          lineHeight: "inherit",
+        }}
+        value={props.slide.spokenNarration}
+        onChange={(e) => {
+          props.partialUpdateSlide({ spokenNarration: e.target.value });
+        }}
+      />
     </>
   );
 };
