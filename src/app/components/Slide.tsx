@@ -91,8 +91,9 @@ export const Slide = (props: SlideProps) => {
 
         <div className="h-2/3 flex">
           <textarea
-            className="w-1/2 text-2xl text-black p-10 resize-none bg-transparent m-12 rounded-xl"
+            className="w-1/2 text-3xl text-black font-medium p-10 resize-none bg-transparent m-12 rounded-xl"
             style={{
+              lineHeight: "1.5",
             }}
             value={props.slide.content}
             placeholder="Body"
