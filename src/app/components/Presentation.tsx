@@ -40,7 +40,7 @@ export const Presentation = ({ chatInProgress }: { chatInProgress: boolean; }) =
   useMakeCopilotActionable(
     {
       name: "appendSlide",
-      description: "Add a slide after the current slide. Call this function multiple times to add multiple slides.",
+      description: "Add a slide after all the existing slides. Call this function multiple times to add multiple slides.",
       argumentAnnotations: [
         {
           name: "title",
@@ -76,18 +76,10 @@ export const Presentation = ({ chatInProgress }: { chatInProgress: boolean; }) =
           spokenNarration,
         };
 
-        // insert the new slide at the current index
-        setSlides((slides) => [
-          ...slides.slice(0, currentSlideIndex + 1),
-          newSlide,
-          ...slides.slice(currentSlideIndex + 1),
-        ]);
-
-        // move to the new slide
-        setCurrentSlideIndex((i) => i + 1);
+        setSlides((slides) => [...slides, newSlide]);
       },
     },
-    []
+    [setSlides]
   );
 
   const context = useCopilotContext();
