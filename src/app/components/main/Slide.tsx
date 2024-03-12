@@ -1,0 +1,104 @@
+"use client";
+import { useCopilotAction } from "@copilotkit/react-core";
+import useUpdateSlide from "../../actions/useUpdateSlide";
+import { SlideModel } from "@/app/types";
+
+export interface SlideProps {
+  slide: SlideModel;
+  partialUpdateSlide: (partialSlide: Partial<SlideModel>) => void;
+}
+
+export const Slide = (props: SlideProps) => {
+  const backgroundImage =
+    'url("https://source.unsplash.com/featured/?' +
+    encodeURIComponent(props.slide.backgroundImageDescription) +
+    '")';
+
+  /**
+   * This action allows the Copilot to update the current slide.
+   */
+  useUpdateSlide({ partialUpdateSlide: props.partialUpdateSlide });
+
+  return (
+    <div className="w-full h-full relative bg-white flex">
+      <div className="w-2/3 h-full flex flex-col">
+        <SlideContent
+          content={props.slide.content}
+          onChange={(newContent) => {
+            props.partialUpdateSlide({ content: newContent });
+          }}
+        />
+        <SlideSpeakerNotes
+          spokenNarration={props.slide.spokenNarration}
+          onChange={(newSpokenNarration) => {
+            props.partialUpdateSlide({ spokenNarration: newSpokenNarration });
+          }}
+        />
+      </div>
+      <SlideImage backgroundImage={backgroundImage} />
+    </div>
+  );
+};
+
+function SlideImage({ backgroundImage }: { backgroundImage: string }) {
+  return (
+    <div
+      className="flex-1 h-full"
+      style={{
+        backgroundImage,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    />
+  );
+}
+
+interface SpeakerNotesProps {
+  spokenNarration: string;
+  onChange: (newSpokenNarration: string) => void;
+}
+
+function SlideSpeakerNotes({ spokenNarration, onChange }: SpeakerNotesProps) {
+  return (
+    <div className="bg-gray-200 relative h-20 flex flex-col">
+      <textarea
+        className="w-full h-full bg-transparent p-2 text-xs"
+        style={{
+          border: "none",
+          outline: "none",
+          lineHeight: "1.5",
+          resize: "none",
+        }}
+        placeholder="Speaker notes..."
+        value={spokenNarration}
+        onChange={(e) => {
+          onChange(e.target.value);
+        }}
+      />
+    </div>
+  );
+}
+
+interface SlideContentProps {
+  content: string;
+  onChange: (newContent: string) => void;
+}
+
+function SlideContent({ content, onChange }: SlideContentProps) {
+  return (
+    <textarea
+      className="flex-1 w-full text-gray-800 p-4 px-10 font-bold flex items-center line-clamp-6"
+      style={{
+        border: "none",
+        outline: "none",
+        resize: "none",
+        fontSize: "2vw",
+      }}
+      value={content}
+      placeholder="Slide content..."
+      onChange={(e) => {
+        onChange(e.target.value);
+      }}
+    />
+  );
+}

@@ -19,6 +19,7 @@
     "@langchain/core": "^0.1.29",
     "@langchain/langgraph": "^0.0.7",
     "@langchain/openai": "^0.0.14",
+    "clsx": "^2.1.0",
     "langchain": "^0.1.19",
     "next": "14.1.0",
     "openai": "^4.28.0",
