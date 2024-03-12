@@ -85,10 +85,7 @@ export const Presentation = ({
   });
 
   const context = useCopilotContext();
-  const generateSlideTask = new CopilotTask({
-    instructions:
-      "Make the next slide related to the overall topic of the presentation. It will be inserted after the current slide. Do NOT carry any research",
-  });
+
   const [generateSlideTaskRunning, setGenerateSlideTaskRunning] =
     useState(false);
 
@@ -132,7 +129,17 @@ export const Presentation = ({
         <ActionButton
           disabled={generateSlideTaskRunning || chatInProgress}
           onClick={async () => {
+            let slideContent = prompt("What should the new slide be about?");
+            if (slideContent === null) {
+              return;
+            }
             setGenerateSlideTaskRunning(true);
+            const generateSlideTask = new CopilotTask({
+              instructions:
+                "Make a new slide given this user input: " +
+                slideContent +
+                "\n DO NOT carry out research",
+            });
             await generateSlideTask.run(context);
             setGenerateSlideTaskRunning(false);
           }}
