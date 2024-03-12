@@ -1,8 +1,5 @@
 "use client";
-import { useMakeCopilotActionable } from "@copilotkit/react-core";
-import { useState } from "react";
-import Markdown from "react-markdown";
-
+import { useCopilotAction } from "@copilotkit/react-core";
 
 export interface SlideModel {
   title: string;
@@ -16,7 +13,6 @@ export interface SlideProps {
   partialUpdateSlide: (partialSlide: Partial<SlideModel>) => void;
 }
 
-
 export const Slide = (props: SlideProps) => {
   const heightOfSpeakerNotes = 200;
   const backgroundImage =
@@ -24,39 +20,37 @@ export const Slide = (props: SlideProps) => {
     encodeURIComponent(props.slide.backgroundImageDescription) +
     '")';
 
-    useMakeCopilotActionable({
+  useCopilotAction(
+    {
       name: "updateSlide",
       description: "Update the current slide.",
-      argumentAnnotations: [
+      parameters: [
         {
           name: "title",
-          type: "string",
           description: "The title of the slide. Should be a few words long.",
-          required: true,
         },
         {
           name: "content",
-          type: "string",
           description:
             "The content of the slide. Should generally consits of a few bullet points.",
-          required: true,
         },
         {
           name: "backgroundImageDescription",
-          type: "string",
           description:
             "What to display in the background of the slide. For example, 'dog', 'house', etc.",
-          required: true,
         },
         {
           name: "spokenNarration",
-          type: "string",
           description:
             "The spoken narration for the slide. This is what the user will hear when the slide is shown.",
-          required: true,
         },
       ],
-      implementation: async (title, content, backgroundImageDescription, spokenNarration) => {
+      handler: async ({
+        title,
+        content,
+        backgroundImageDescription,
+        spokenNarration,
+      }) => {
         props.partialUpdateSlide({
           title,
           content,
@@ -64,11 +58,13 @@ export const Slide = (props: SlideProps) => {
           spokenNarration,
         });
       },
-    }, [props.partialUpdateSlide]);
+    },
+    [props.partialUpdateSlide]
+  );
 
   return (
     <>
-      <div 
+      <div
         className="w-full relative bg-slate-200"
         style={{
           height: `calc(100vh - ${heightOfSpeakerNotes}px)`,

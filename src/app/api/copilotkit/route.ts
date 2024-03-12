@@ -1,30 +1,28 @@
 import { CopilotBackend, OpenAIAdapter } from "@copilotkit/backend";
-import { ChatPromptTemplate } from "@langchain/core/prompts";
-import { ChatOpenAI } from "@langchain/openai";
 import { researchWithLangGraph } from "./research";
-import { AnnotatedFunction } from "@copilotkit/shared";
+import { Action } from "@copilotkit/shared";
 
 export const runtime = "edge";
 
-const researchAction: AnnotatedFunction<any> = {
+const researchAction: Action<any> = {
   name: "research",
-  description: "Call this function to conduct research on a certain topic. Respect other notes about when to call this function",
-  argumentAnnotations: [
+  description:
+    "Call this function to conduct research on a certain topic. Respect other notes about when to call this function",
+  parameters: [
     {
       name: "topic",
       type: "string",
       description: "The topic to research. 5 characters or longer.",
-      required: true,
     },
   ],
-  implementation: async (topic) => {
+  handler: async ({ topic }) => {
     console.log("Researching topic: ", topic);
     return await researchWithLangGraph(topic);
   },
 };
 
 export async function POST(req: Request): Promise<Response> {
-  const actions: AnnotatedFunction<any>[] = [];
+  const actions: Action<any>[] = [];
   if (process.env["TAVILY_API_KEY"]) {
     actions.push(researchAction);
   }
