@@ -33,7 +33,8 @@ export default function useAppendSlide({
         description:
           "The text to read while presenting the slide. Should be distinct from the slide's content, " +
           "and can include additional context, references, etc. Will be read aloud as-is. " +
-          "Should be a few sentences long, clear, and smooth to read.",
+          "Should be a few sentences long, clear, and smooth to read." +
+          "DO NOT include meta-commentary, such as 'in this slide', 'we explore', etc.",
       },
     ],
 
