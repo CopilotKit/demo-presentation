@@ -19,7 +19,7 @@ interface AgentState {
 function model() {
   return new ChatOpenAI({
     temperature: 0,
-    modelName: "gpt-4-1106-preview",
+    modelName: "gpt-3.5-turbo-0125",
   });
 }
 
