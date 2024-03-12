@@ -20,8 +20,8 @@ export const Slide = (props: SlideProps) => {
   useUpdateSlide({ partialUpdateSlide: props.partialUpdateSlide });
 
   return (
-    <div className="w-full h-full relative bg-white flex">
-      <div className="w-2/3 h-full flex flex-col">
+    <div className="w-full h-full flex flex-row bg-white">
+      <div className="flex-grow h-full flex flex-col" style={{flex: "2"}}>
         <SlideContent
           content={props.slide.content}
           onChange={(newContent) => {
@@ -43,8 +43,9 @@ export const Slide = (props: SlideProps) => {
 function SlideImage({ backgroundImage }: { backgroundImage: string }) {
   return (
     <div
-      className="flex-1 h-full"
+      className="flex-grow h-full"
       style={{
+        flex: "1",
         backgroundImage,
         backgroundSize: "cover",
         backgroundPosition: "center",
