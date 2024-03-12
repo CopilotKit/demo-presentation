@@ -1,5 +1,6 @@
 "use client";
 import { useCopilotAction } from "@copilotkit/react-core";
+import { CopilotTextarea } from "@copilotkit/react-textarea";
 
 export interface SlideModel {
   title: string;
@@ -86,7 +87,7 @@ export const Slide = (props: SlideProps) => {
         </div>
 
         <div className="h-2/3 flex">
-          <textarea
+          <CopilotTextarea
             className="w-1/2 text-3xl text-black font-medium p-10 resize-none bg-transparent m-12 rounded-xl"
             style={{
               lineHeight: "1.5",
@@ -95,6 +96,18 @@ export const Slide = (props: SlideProps) => {
             placeholder="Body"
             onChange={(e) => {
               props.partialUpdateSlide({ content: e.target.value });
+            }}
+            autosuggestionsConfig={{
+              textareaPurpose:
+                "The content of a slide in a presentation. Keep it short.",
+              chatApiConfigs: {
+                suggestionsApiConfig: {
+                  forwardedParams: {
+                    max_tokens: 20,
+                    stop: [".", "?", "!"],
+                  },
+                },
+              },
             }}
           />
 
@@ -109,7 +122,7 @@ export const Slide = (props: SlideProps) => {
         </div>
       </div>
 
-      <textarea
+      <CopilotTextarea
         className=" w-9/12 h-full bg-transparent text-5xl p-10 resize-none bg-gray-500 pr-36"
         style={{
           height: `${heightOfSpeakerNotes}px`,
@@ -123,6 +136,17 @@ export const Slide = (props: SlideProps) => {
         value={props.slide.spokenNarration}
         onChange={(e) => {
           props.partialUpdateSlide({ spokenNarration: e.target.value });
+        }}
+        autosuggestionsConfig={{
+          textareaPurpose: "The spoken narration of the slide.",
+          chatApiConfigs: {
+            suggestionsApiConfig: {
+              forwardedParams: {
+                max_tokens: 20,
+                stop: [".", "?", "!"],
+              },
+            },
+          },
         }}
       />
     </>
