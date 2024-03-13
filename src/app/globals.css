@@ -9,7 +9,7 @@
 }
 
 :root {
-  --copilot-kit-primary-color: #222222;
+  --copilot-kit-primary-color: #222222 !important;
 }
 
 .copilotKitHeader {
