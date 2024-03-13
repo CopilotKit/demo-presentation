@@ -63,7 +63,7 @@ function SlideSpeakerNotes({ spokenNarration, onChange }: SpeakerNotesProps) {
   return (
     <div className="bg-gray-200 relative h-20 flex flex-col">
       <textarea
-        className="w-full h-full bg-transparent p-2 text-xs"
+        className="w-full h-full bg-transparent p-2 text-base"
         style={{
           border: "none",
           outline: "none",
