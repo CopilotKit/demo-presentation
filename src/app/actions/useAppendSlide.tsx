@@ -21,7 +21,7 @@ export default function useAppendSlide({
       {
         name: "content",
         description:
-          "The content of the slide. Should generally consists of a title and a few bullet points. No more than three.",
+          "The content of the slide. MUST consist of a title, then an empty newline, then a few bullet points. Always between 1-3 bullet points - no more, no less."
       },
       {
         name: "backgroundImageDescription",
