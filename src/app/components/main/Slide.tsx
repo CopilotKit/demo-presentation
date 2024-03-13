@@ -43,7 +43,7 @@ export const Slide = (props: SlideProps) => {
 function SlideImage({ backgroundImage }: { backgroundImage: string }) {
   return (
     <div
-      className="flex-grow h-full"
+      className="flex-grow h-full bg-slate-200"
       style={{
         flex: "1",
         backgroundImage,
