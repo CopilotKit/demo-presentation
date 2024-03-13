@@ -26,6 +26,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+
+## Zoom in on the CopilotKit code
+  1. Search for `useMakeCopilotReadable` to see where frontend application information is being made accessible to the Copilot engine
+
+  2. Search for `useAppendSlide` and `useUpdateSlide` to see where the frontend application action is made accessible to the Copilot engine.
+
+  3. In `route.ts`, see how the backend-running `researchAction` is defined against the `research.ts` agent, powered by LangChain's LangGraph and by Tavily research API.
+```
+
 ## Learn More
 
 To learn more about CopilotKit, take a look at the following resources:
