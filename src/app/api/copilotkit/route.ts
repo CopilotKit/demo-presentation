@@ -30,5 +30,12 @@ export async function POST(req: Request): Promise<Response> {
     actions: actions,
   });
 
-  return copilotKit.response(req, new OpenAIAdapter());
+  return copilotKit.response(
+    req,
+    new OpenAIAdapter(
+      process.env["OPENAI_MODEL"]
+        ? { model: process.env["OPENAI_MODEL"] }
+        : undefined
+    )
+  );
 }
