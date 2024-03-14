@@ -34,7 +34,9 @@ async function search(state: {
   if (topic.length < 5) {
     topic = "topic: " + topic;
   }
+  console.log("searching for topic:", topic);
   const docs = await retriever.getRelevantDocuments(topic);
+  console.log("search result length:", docs.length);
   return {
     agentState: {
       ...state.agentState,
@@ -46,6 +48,7 @@ async function search(state: {
 async function curate(state: {
   agentState: AgentState;
 }): Promise<{ agentState: AgentState }> {
+  console.log("curating search results");
   const response = await model().invoke(
     [
       new SystemMessage(
@@ -76,6 +79,7 @@ async function curate(state: {
   const newSearchResults = searchResults.filter((result: any) => {
     return urls.includes(result.metadata.source);
   });
+  console.log("curated search results:", newSearchResults);
   return {
     agentState: {
       ...state.agentState,
@@ -87,6 +91,7 @@ async function curate(state: {
 async function critique(state: {
   agentState: AgentState;
 }): Promise<{ agentState: AgentState }> {
+  console.log("critiquing article");
   let feedbackInstructions = "";
   if (state.agentState.critique) {
     feedbackInstructions =
@@ -124,6 +129,7 @@ async function critique(state: {
 async function write(state: {
   agentState: AgentState;
 }): Promise<{ agentState: AgentState }> {
+  console.log("writing article");
   const response = await model().invoke([
     new SystemMessage(
       `You are a personal newspaper writer. Your sole purpose is to write a well-written article about a 
@@ -145,6 +151,7 @@ async function write(state: {
     ),
   ]);
   const content = response.content as string;
+  console.log("article:", content);
   return {
     agentState: {
       ...state.agentState,
@@ -156,6 +163,7 @@ async function write(state: {
 async function revise(state: {
   agentState: AgentState;
 }): Promise<{ agentState: AgentState }> {
+  console.log("revising article");
   const response = await model().invoke([
     new SystemMessage(
       `You are a personal newspaper editor. Your sole purpose is to edit a well-written article about a 
@@ -171,6 +179,7 @@ async function revise(state: {
     ),
   ]);
   const content = response.content as string;
+  console.log("revised article:", content);
   return {
     agentState: {
       ...state.agentState,
