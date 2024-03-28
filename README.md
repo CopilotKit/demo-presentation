@@ -14,8 +14,8 @@ copy `.env.local.example` to `.env.local` and populate the required environment 
 
 > ⚠️ **Important:** Not all users have access to the GPT-4 model yet. If you don't have access, you can use GPT-3 by setting `OPENAI_MODEL` to `gpt-3.5-turbo` in the `.env.local` file.
 
-If you want online research to work, you only need a tavily API key, which you can obtain here: https://tavily.com/
-
+**If you want online research to work, you only need a tavily API key, which you can obtain here: https://tavily.com/
+**
 ### 3. Run the app
 
 ```bash
