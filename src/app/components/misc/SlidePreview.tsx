@@ -23,7 +23,7 @@ export function SlidePreview({
           </p>
           {spokenNarration && (
             <p className="font-normal text-sm text-slate-500 mb-4 relative z-50">
-              "{spokenNarration}"
+              &quot;{spokenNarration}&quot;
             </p>
           )}
         </div>
