@@ -10,7 +10,11 @@ export default function AIPresentation() {
   const [performResearch, setPerformResearch] = useState(false);
 
   return (
-    <CopilotKit url="/api/copilotkit/">
+    <CopilotKit
+      publicApiKey={process.env.NEXT_PUBLIC_COPILOT_CLOUD_API_KEY}
+      // Alternatively, you can use runtimeUrl to host your own CopilotKit Runtime
+      // runtimeUrl="/api/copilotkit"
+    >
       <CopilotSidebar
         instructions={
           "Help the user create and edit a powerpoint-style presentation." +

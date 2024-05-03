@@ -4,7 +4,7 @@ This is a demo that showcases using CopilotKit to build a PowerPoint like web ap
 
 To deploy with Vercel, click the button below:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FCopilotKit%2Fpresentation-demo&env=OPENAI_API_KEY&project-name=copilotkit-presentation-demo&repository-name=copilotkit-presentation-demo)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FCopilotKit%2Fpresentation-demo&env=NEXT_PUBLIC_COPILOT_CLOUD_API_KEY,TAVILY_API_KEY&project-name=copilotkit-presentation-demo&repository-name=copilotkit-presentation-demo)
 
 ## Getting Started
 
