@@ -23,7 +23,10 @@ const researchAction: Action<any> = {
 
 export async function POST(req: Request): Promise<Response> {
   const actions: Action<any>[] = [];
-  if (process.env["TAVILY_API_KEY"]) {
+  if (
+    process.env["TAVILY_API_KEY"] &&
+    process.env["TAVILY_API_KEY"] !== "NONE"
+  ) {
     actions.push(researchAction);
   }
   const copilotKit = new CopilotRuntime({
