@@ -1,6 +1,6 @@
 import { OpenAI } from "openai";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const openai = new OpenAI();
 
