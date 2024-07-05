@@ -9,10 +9,7 @@ export interface SlideProps {
 }
 
 export const Slide = (props: SlideProps) => {
-  const backgroundImage =
-    'url("https://source.unsplash.com/featured/?' +
-    encodeURIComponent(props.slide.backgroundImageDescription) +
-    '")';
+  const backgroundImage = `url("${props.slide.backgroundImageUrl}")`;
 
   /**
    * This action allows the Copilot to update the current slide.
@@ -21,7 +18,7 @@ export const Slide = (props: SlideProps) => {
 
   return (
     <div className="w-full h-full flex flex-row bg-white">
-      <div className="flex-grow h-full flex flex-col" style={{flex: "2"}}>
+      <div className="flex-grow h-full flex flex-col" style={{ flex: "2" }}>
         <SlideContent
           content={props.slide.content}
           onChange={(newContent) => {

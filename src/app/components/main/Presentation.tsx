@@ -18,7 +18,7 @@ export const Presentation = ({
   const [slides, setSlides] = useState<SlideModel[]>([
     {
       content: "This is the first slide.",
-      backgroundImageDescription: "hello",
+      backgroundImageUrl: "https://loremflickr.com/800/600/hello",
       spokenNarration: "This is the first slide. Welcome to our presentation!",
     },
   ]);
