@@ -80,10 +80,6 @@ export const POST = async (req: NextRequest) => {
     runtime: new CopilotRuntime({ actions }),
     serviceAdapter: new OpenAIAdapter({ model: openaiModel }),
     endpoint: req.nextUrl.pathname,
-    cloud: {
-      publicApiKey: process.env.COPILOT_CLOUD_API_KEY,
-      baseUrl: "https://api.cloud.stagingcopilotkit.ai",
-    },
   });
 
   return handleRequest(req);
