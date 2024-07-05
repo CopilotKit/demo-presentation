@@ -1,8 +1,12 @@
-import { CopilotRuntime, OpenAIAdapter } from "@copilotkit/backend";
 import { researchWithLangGraph } from "./research";
 import { Action } from "@copilotkit/shared";
+import { NextRequest } from "next/server";
+import {
+  CopilotRuntime,
+  copilotRuntimeNextJSAppRouterEndpoint,
+  OpenAIAdapter,
+} from "@copilotkit/runtime";
 
-export const runtime = "edge";
 const UNSPLASH_ACCESS_KEY_ENV = "UNSPLASH_ACCESS_KEY";
 const UNSPLASH_ACCESS_KEY = process.env[UNSPLASH_ACCESS_KEY_ENV];
 
@@ -23,7 +27,7 @@ const researchAction: Action<any> = {
   },
 };
 
-export async function POST(req: Request): Promise<Response> {
+export const POST = async (req: NextRequest) => {
   const actions: Action<any>[] = [
     {
       name: "getImageUrl",
@@ -60,17 +64,27 @@ export async function POST(req: Request): Promise<Response> {
       },
     },
   ];
+
   if (
     process.env["TAVILY_API_KEY"] &&
     process.env["TAVILY_API_KEY"] !== "NONE"
   ) {
     actions.push(researchAction);
   }
-  const copilotKit = new CopilotRuntime({
-    actions: actions,
-  });
 
   const openaiModel = process.env["OPENAI_MODEL"];
 
-  return copilotKit.response(req, new OpenAIAdapter({ model: openaiModel }));
-}
+  console.log("ENV.COPILOT_CLOUD_API_KEY", process.env.COPILOT_CLOUD_API_KEY);
+
+  const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
+    runtime: new CopilotRuntime({ actions }),
+    serviceAdapter: new OpenAIAdapter({ model: openaiModel }),
+    endpoint: req.nextUrl.pathname,
+    cloud: {
+      publicApiKey: process.env.COPILOT_CLOUD_API_KEY,
+      baseUrl: "https://api.cloud.stagingcopilotkit.ai",
+    },
+  });
+
+  return handleRequest(req);
+};

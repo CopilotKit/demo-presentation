@@ -9,11 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@copilotkit/backend": "0.36.0-mme-push-to-talk.0",
-    "@copilotkit/react-core": "0.36.0-mme-push-to-talk.0",
-    "@copilotkit/react-textarea": "0.36.0-mme-push-to-talk.0",
-    "@copilotkit/react-ui": "0.36.0-mme-push-to-talk.0",
-    "@copilotkit/shared": "0.36.0-mme-push-to-talk.0",
+    "@copilotkit/runtime": "1.0.0-beta.2",
+    "@copilotkit/react-core": "1.0.0-beta.2",
+    "@copilotkit/react-textarea": "1.0.0-beta.2",
+    "@copilotkit/react-ui": "1.0.0-beta.2",
+    "@copilotkit/shared": "1.0.0-beta.2",
     "@heroicons/react": "^2.1.1",
     "@langchain/community": "^0.0.29",
     "@langchain/core": "^0.1.29",

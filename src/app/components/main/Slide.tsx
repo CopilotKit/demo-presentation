@@ -1,5 +1,4 @@
 "use client";
-import { useCopilotAction } from "@copilotkit/react-core";
 import useUpdateSlide from "../../actions/useUpdateSlide";
 import { SlideModel } from "@/app/types";
 
