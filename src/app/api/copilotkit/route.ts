@@ -76,10 +76,12 @@ export const POST = async (req: NextRequest) => {
 
   const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
     runtime: new CopilotRuntime({ actions }),
-    serviceAdapter: new UnifyAdapter({ apiKey: process.env.UNIFY_API_KEY }),
+    serviceAdapter: new UnifyAdapter({
+      apiKey: process.env.UNIFY_API_KEY,
+      model: "llama-3-8b-chat@fireworks-ai"
+    }),
     endpoint: req.nextUrl.pathname,
   });
 
   return handleRequest(req);
 };
-
