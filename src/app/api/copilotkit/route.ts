@@ -4,9 +4,8 @@ import { NextRequest } from "next/server";
 import {
   CopilotRuntime,
   copilotRuntimeNextJSAppRouterEndpoint,
-  OpenAIAdapter,
+  UnifyAdapter,
 } from "@copilotkit/runtime";
-import OpenAI from "openai";
 
 const UNSPLASH_ACCESS_KEY_ENV = "UNSPLASH_ACCESS_KEY";
 const UNSPLASH_ACCESS_KEY = process.env[UNSPLASH_ACCESS_KEY_ENV];
@@ -73,21 +72,16 @@ export const POST = async (req: NextRequest) => {
     actions.push(researchAction);
   }
 
-  const openaiModel = process.env["OPENAI_MODEL"];
-
-  const openai = new OpenAI({
-    apiKey: process.env.UNIFY_API_KEY,
-    baseURL: "https://api.unify.ai/v0/"
-  });
-
   console.log("ENV.COPILOT_CLOUD_API_KEY", process.env.COPILOT_CLOUD_API_KEY);
 
   const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
     runtime: new CopilotRuntime({ actions }),
-    serviceAdapter: new OpenAIAdapter({ openai, model: openaiModel }),
+    serviceAdapter: new UnifyAdapter({
+      apiKey: process.env.UNIFY_API_KEY,
+      model: "router@q:0.5|c:0.013|models:gpt-4o,gpt-3.5-turbo|providers:openai"
+    }),
     endpoint: req.nextUrl.pathname,
   });
 
   return handleRequest(req);
 };
-
