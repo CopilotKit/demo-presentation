@@ -78,7 +78,7 @@ export const POST = async (req: NextRequest) => {
     runtime: new CopilotRuntime({ actions }),
     serviceAdapter: new UnifyAdapter({
       apiKey: process.env.UNIFY_API_KEY,
-      model: "gpt-4o@openai"
+      model: "router@models:gpt-4o|providers:openai"
     }),
     endpoint: req.nextUrl.pathname,
   });
